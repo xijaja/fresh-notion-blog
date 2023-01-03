@@ -10,10 +10,11 @@ export default function App({ Component }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        {/* 描述、关键词、作者 */}
+        {/* 描述、关键词、作者等 */}
         <meta name="description" content={Deno.env.get("SITE_DESCRIPTION")} />
         <meta name="keywords" content={Deno.env.get("SITE_KEYWORDS")} />
         <meta name="author" content={Deno.env.get("SITE_AUTHOR")} />
+        <meta property="og:image" content={Deno.env.get("SITE_IMAGE")} />
 
         {/* 一些库 */}
         <link href={"https://cdn.jsdelivr.net/npm/daisyui@2.46.0/dist/full.css"} rel="stylesheet" type="text/css" />
