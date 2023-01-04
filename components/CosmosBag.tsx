@@ -1,4 +1,3 @@
-import NotionData from "../lib/notionData.ts";
 import { NotionBlock, NotionPage } from "../lib/notionTypes.ts";
 
 type props = {

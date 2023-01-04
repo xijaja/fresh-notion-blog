@@ -19,13 +19,13 @@ export const handler: Handlers<pageAndBlocks> = {
     const blocks = await notion.getPageBlock().then(r => r);
     // 整理 blocks 的数据，针对存在子模块的情况进行遍历
     for (let block of blocks) {
-      if (block.has_children) {
+      if (block.has_children) { // 如果存在子模块，则递归遍历
         const children = await processBlocks(block).then(r => r);
-        block = children;
+        block = children; // 为当前块重新赋值
       }
-      if (block.type === "child_database") {
+      if (block.type === "child_database") { // 如果是数据库模块，则获取数据库中的页面列表
         const pageList = await notion.getDatabasePageList(block.id).then(r => r);
-        block.database_pages = pageList;
+        block.database_pages = pageList; // 在当前块中添加 database_pages 属性
       }
     }
     return ctx.render({ pageInfo, blocks });
