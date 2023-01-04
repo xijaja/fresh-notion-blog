@@ -49,8 +49,8 @@ export default class NotionData {
     const response = await this.client.blocks.retrieve({
       block_id: blockId,
     });
-    console.log("检索的块：", response);
-    return response;
+    // console.log("检索的块：", response);
+    return response as NotionBlock;
   }
 
   // 查询数据库，数据库ID示例：6982ea5a-d3fe-4c24-a316-8b9207e504b2

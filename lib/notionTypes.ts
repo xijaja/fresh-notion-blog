@@ -125,7 +125,7 @@ export type NotionBlock = {
   divider?: {
     color: string; // 颜色
   };
-  [key: string]: any; // todo 其他属性
+  [key: string]: any; // 其他属性
 };
 
 // 数据库结构体

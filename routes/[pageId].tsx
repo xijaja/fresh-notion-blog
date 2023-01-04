@@ -1,7 +1,7 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import Layout from "../components/Layout.tsx";
 import NotionData from "../lib/notionData.ts";
-import { PageData, processPages } from "../lib/process.ts";
+import { PageData, processPages, processBlocks } from "../lib/process.ts";
 import { NotionBlock } from "../lib/notionTypes.ts";
 import CosmosBag from "../components/CosmosBag.tsx";
 
@@ -21,6 +21,13 @@ export const handler: Handlers<pageAndBlocks> = {
     const page = await notion.getPageData(pageId).then(r => r);
     const pageInfo = processPages(page);
     const blocks = await notion.getPageBlock(pageId).then(r => r);
+    // 整理 blocks 的数据，针对存在子模块的情况进行遍历
+    for (let block of blocks) {
+      if (block.has_children) {
+        const children = await processBlocks(block).then(r => r);
+        block = children;
+      }
+    }
     return ctx.render({ pageInfo, blocks });
   }
 }

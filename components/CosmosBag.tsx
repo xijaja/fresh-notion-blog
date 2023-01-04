@@ -61,7 +61,20 @@ export default function CosmosBag({ block }: props) {
         </div>
       );
 
-    // case "toggle":  // 折叠块
+    case "toggle":  // 折叠块
+      // console.log("block: ", block);
+      return (
+        <div className="my-2">
+          <details>
+            <summary className="text-lg font-bold">{block.toggle?.rich_text[0].plain_text}</summary>
+            {block.has_children && (
+              <div className="pl-4">
+                {block.children.map((bc: NotionBlock, _index: number) => <CosmosBag block={bc} />)}
+              </div>
+            )}
+          </details>
+        </div>
+      );
 
     case "quote": // 引用块
       return (
@@ -104,30 +117,22 @@ export default function CosmosBag({ block }: props) {
         </div>
       );
 
+    case "column": // 列
+      return (
+        <div className="my-2">
+          <p>列</p>
+        </div>
+      );
+
+    case "divider": // 分割线
+      return (
+        <div className="my-2">
+          <hr />
+        </div>
+      );
+
 
     default:
       return <p className="text-red-500">块类型：{block.type} 尚不支持</p>
   }
 }
-
-
-// async function columnList(blockId: string) {
-//   const notion = new NotionData();
-//   const blocks = await notion.getPageBlock(blockId);
-//   for (const block of blocks) {
-//     if (block.type === "column") {
-//       const co = await notion.getPageBlock(block.id);
-//       block.column = co;
-//     }
-//   }
-//   console.log(blocks);
-//   return (
-//     <div className="my-2 flex justify-between">
-//       <div className={`w-1/${blocks.length} flex flex-col`}>
-//         {blocks.map((block: NotionBlock, _index: number) => {
-//           return block.column!.map((block: NotionBlock, _index: number) => <CosmosBag block={block} />)
-//         })}
-//       </div>
-//     </div>
-//   );
-// }
