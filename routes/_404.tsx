@@ -3,7 +3,7 @@ import Layout from "../components/Layout.tsx";
 export default function NotFondPage() {
   return (
     <Layout title="我勒个乖乖！">
-      <section class="w-full flex items-center justify-center">
+      <section class="w-full flex items-center justify-center mt-24">
         <div class="text-center">
           <h1 class="text-6xl md:text-9xl font-extrabold">
             404

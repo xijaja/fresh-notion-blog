@@ -28,6 +28,7 @@ export type NotionPage = {
   archived: boolean; // 是否归档
   properties: {
     title?: title; // 标题
+    [key: string]: any; // 其他属性
   };
   url: string; // 页面的 URL
 };
@@ -164,7 +165,7 @@ export type NotionDataBase = {
   title: rich_text; // 数据库的标题
   description: any; // 数据库的描述
   properties: {
-    [key: string]: any; // 数据库的属性
+    [key: string]: any; // 数据库的属性，这里是一些用户自定义的字段属性
   };
   parent: {
     type: string; // 父级的类型，数据是挂在页面下的，所以这里是 page_id

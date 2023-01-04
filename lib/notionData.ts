@@ -58,7 +58,7 @@ export default class NotionData {
     const response = await this.client.databases.retrieve({
       database_id: databaseId,
     });
-    console.log("查询数据库：", response);
+    // console.log("查询数据库：", response);
     return response as NotionDataBase;
   }
 
@@ -67,7 +67,7 @@ export default class NotionData {
     const response = await this.client.databases.query({
       database_id: databaseId,
     });
-    console.log("查询数据库中的页面列表：", response);
+    // console.log("查询数据库中的页面列表：", response);
     return response.results as NotionPage[];
   }
 }

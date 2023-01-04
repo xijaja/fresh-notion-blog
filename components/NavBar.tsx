@@ -10,8 +10,7 @@ export default function Header({ active, imageUrl }: Props) {
   // 菜单列表
   const menus = [
     { name: "首页", href: "/" },
-    { name: "关于", href: "/about" },
-    // { name: "留言", href: "/comments" },
+    { name: "留言", href: "/message" },
   ];
 
   return (

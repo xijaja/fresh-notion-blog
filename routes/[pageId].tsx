@@ -27,13 +27,14 @@ export const handler: Handlers<pageAndBlocks> = {
         const children = await processBlocks(block).then(r => r);
         block = children;
       }
+      // todo 数据库模块
     }
     return ctx.render({ pageInfo, blocks });
   }
 }
 
 
-export default function GreetPage({ data }: PageProps<pageAndBlocks>) {
+export default function ChildPage({ data }: PageProps<pageAndBlocks>) {
   return (
     <Layout title={data.pageInfo.title || "无标题"} imageUrl={data.pageInfo.cover}>
       {data.blocks.map((block, _index) => <CosmosBag block={block} />)}

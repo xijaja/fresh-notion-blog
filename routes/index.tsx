@@ -23,12 +23,16 @@ export const handler: Handlers<pageAndBlocks> = {
         const children = await processBlocks(block).then(r => r);
         block = children;
       }
+      if (block.type === "child_database") {
+        const pageList = await notion.getDatabasePageList(block.id).then(r => r);
+        block.database_pages = pageList;
+      }
     }
     return ctx.render({ pageInfo, blocks });
   }
 }
 
-export default function Home({ data }: PageProps<pageAndBlocks>) {
+export default function HomePage({ data }: PageProps<pageAndBlocks>) {
   const HomeImageUrl = Deno.env.get("HOME_COVER") || data.pageInfo.cover;
   const HomeTitle = Deno.env.get("SITE_NAME") || "首页";
 

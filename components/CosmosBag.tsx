@@ -1,5 +1,5 @@
 import NotionData from "../lib/notionData.ts";
-import { NotionBlock } from "../lib/notionTypes.ts";
+import { NotionBlock, NotionPage } from "../lib/notionTypes.ts";
 
 type props = {
   block: NotionBlock;
@@ -109,8 +109,38 @@ export default function CosmosBag({ block }: props) {
       );
 
     case "child_database": // 子数据库
+      // console.log("块: ", block);
+      // for (const p of block.database_pages) {
+      //   console.log("页面的标题: ", p.properties.名称.title[0].plain_text);
+      // }
       return (
-        <div className="">子数据库：{block.child_database!.title}</div>
+        <div className="my-2">
+          <p className="my-2">子数据库：{block.child_database!.title}</p>
+          <div className="grid gap-4 grid-cols-3">
+            {block.database_pages.map((page: NotionPage, _index: number) => (
+              <a href={"/" + page.id} className="border border-gray-400 rounded">
+                {/* 数据库页面的卡片封面 */}
+                <div className="h-32">
+                  {page.cover &&
+                    <img
+                      src={page.cover?.external?.url || page.cover?.file?.url}
+                      alt="cover"
+                      width="100%"
+                      className="h-32"
+                    />}
+                </div>
+                {/* 数据库页面的图标和标题 */}
+                <div className="p-2">
+                  {page.icon && <span>{page.icon?.emoji || page.icon?.external?.url}</span>}
+                  {/* className="underline" style={"text-underline-offset:4px"} */}
+                  <span>
+                    {page.properties.title?.title[0]?.plain_text || page.properties.名称?.title[0].plain_text}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
       );
 
     case "column_list": // 多列列表
