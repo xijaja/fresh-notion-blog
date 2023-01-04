@@ -115,10 +115,14 @@ export default function CosmosBag({ block }: props) {
       // }
       return (
         <div className="my-2">
-          <p className="my-2">子数据库：{block.child_database!.title}</p>
+          {/* 是否需要显示标题 */}
+          {Deno.env.get("SHOW_DATABASE_TITLE") === "true"
+            && <p className="my-2 pl-2 border-l-4 border-gray-300 text-lg">{block.child_database!.title}</p>
+          }
+          {/* 数据库页面卡片 */}
           <div className="grid gap-4 grid-cols-3">
             {block.database_pages.map((page: NotionPage, _index: number) => (
-              <a href={"/" + page.id} className="border border-gray-400 rounded">
+              <a href={"/" + page.id} className="shadow rounded border border-gray-200">
                 {/* 数据库页面的卡片封面 */}
                 <div className="h-32">
                   {page.cover &&
@@ -132,7 +136,6 @@ export default function CosmosBag({ block }: props) {
                 {/* 数据库页面的图标和标题 */}
                 <div className="p-2">
                   {page.icon && <span>{page.icon?.emoji || page.icon?.external?.url}</span>}
-                  {/* className="underline" style={"text-underline-offset:4px"} */}
                   <span>
                     {page.properties.title?.title[0]?.plain_text || page.properties.名称?.title[0].plain_text}
                   </span>
