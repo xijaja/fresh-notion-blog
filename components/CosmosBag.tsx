@@ -139,7 +139,7 @@ export default function CosmosBag({ block }: props) {
                   <span>
                     {page.properties.title?.title[0]?.plain_text
                       ? page.properties.title?.title[0]?.plain_text
-                      : page.properties.名称?.title[0].plain_text}
+                      : page.properties.名称?.title[0]?.plain_text}
                   </span>
                 </div>
               </a>
