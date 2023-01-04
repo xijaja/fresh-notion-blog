@@ -105,6 +105,8 @@
     "https://deno.land/x/notion_sdk@v1.0.4/src/type-utils.ts": "b699d5b05c3c90579693ad53882877683b5ff5fc6e16633fbbf2aef8e30e176e",
     "https://deno.land/x/rutt@0.0.13/mod.ts": "af981cfb95131152bf50fc9140fc00cb3efb6563df2eded1d408361d8577df20",
     "https://deno.land/x/tabler_icons_tsx@0.0.1/tsx/lemon-2.tsx": "7b576d80c43c4a1f92bd62fcdcbb7570e8f79df321f6f39eaf42e4140dba0b7e",
+    "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/brand-github.tsx": "583c14b1fcea8a5fb3caf390516d252f8093a97d2bf2554a121f2dcbd648b401",
+    "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/file-text.tsx": "ae09b21a0563cda7f7bfdcace64d38621ed0c6979d414f3d792a5b2dfac37754",
     "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/moon-stars.tsx": "88382fc88ef19542928ec116fbb1c1a92a4262d87dea5e7530025506b1996a35",
     "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/sun.tsx": "3cb6d501e7f621a634acd2c58bea23374be980c3cd9e72328a327d7b69a8cbc4",
     "https://deno.land/x/ts_morph@16.0.0/common/DenoRuntime.ts": "537800e840d0994f9055164e11bf33eadf96419246af0d3c453793c3ae67bdb3",

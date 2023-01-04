@@ -1,4 +1,5 @@
 import { NotionBlock, NotionPage } from "../lib/notionTypes.ts";
+import IconFileText from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/file-text.tsx"
 
 type props = {
   block: NotionBlock;
@@ -102,7 +103,9 @@ export default function CosmosBag({ block }: props) {
       return (
         <div className="my-2">
           <a href={"/" + block.id}>
-            📓 <span className="underline" style={"text-underline-offset:4px"}>{block.child_page!.title}</span>
+            <span className="flex gap-1 items-center underline" style={"text-underline-offset:4px"}>
+              <IconFileText class="w-6 h-6" /> {block.child_page!.title}
+            </span>
           </a>
         </div>
       );
