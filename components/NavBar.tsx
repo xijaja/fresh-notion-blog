@@ -26,8 +26,9 @@ export default function Header({ active, imageUrl }: Props) {
               {Deno.env.get("SITE_NAME")}
             </div>
           </a>
+
+          {/* 导航栏右侧菜单 */}
           <ul className="flex items-center gap-6">
-            {/* 导航栏右侧菜单 */}
             {menus.map((menu) => (
               <li>
                 <a
@@ -39,11 +40,13 @@ export default function Header({ active, imageUrl }: Props) {
                 </a>
               </li>
             ))}
+
             {/* 切换主题按钮 */}
             <li>
               <Changer />
             </li>
           </ul>
+
         </div>
       </div>
 

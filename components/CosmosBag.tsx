@@ -22,9 +22,12 @@ export default function CosmosBag({ block }: props) {
       return (
         // 如果段落有内容，就循环读取段落内容并渲染，否则是一个空行
         <div className="my-2">
-          {block.paragraph!.rich_text.length >= 1 ? block.paragraph!.rich_text.map((text, index) => (
-            <span key={index}>{text.plain_text}</span>
-          )) : <br />}
+          {block.paragraph!.rich_text.length >= 1
+            ? block.paragraph!.rich_text.map(
+              (text, _index) => (
+                <span>{text.href ? <a href={text.href} className="underline" style={"text-underline-offset:4px"}>{text.plain_text}</a> : text.plain_text}</span>
+              ))
+            : <br />}
         </div>
       );
 
@@ -111,28 +114,39 @@ export default function CosmosBag({ block }: props) {
       );
 
     case "column_list": // 多列列表
+      // console.log("块: ", block);
       return (
-        <div className="my-2 flex justify-between">
-          <p>多列列表</p>
+        <div className="my-2 flex gap-6 justify-between">
+          {block.children.map((bc: NotionBlock, _index: number) => <CosmosBag block={bc} />)}
         </div>
       );
 
     case "column": // 列
       return (
-        <div className="my-2">
-          <p>列</p>
+        <div className="my-2 flex flex-col w-1/2">
+          {block.children.map((bc: NotionBlock, _index: number) => <CosmosBag block={bc} />)}
         </div>
       );
 
     case "divider": // 分割线
       return (
         <div className="my-2">
-          <hr />
+          <hr className="border border-gray-200" />
         </div>
       );
 
+    case "image": // 图片
+      return (
+        <div className="my-2">
+          {block.image!.type === "file"
+            ? <img src={block.image?.file?.url} alt={block.image!.caption[0].plain_text} />
+            : <img src={block.image?.external?.url} alt={block.image!.caption[0].plain_text} />
+          }
+        </div>
+      );
 
     default:
+      console.log("尚不支持块：", block);
       return <p className="text-red-500">块类型：{block.type} 尚不支持</p>
   }
 }

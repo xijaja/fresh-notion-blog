@@ -98,7 +98,7 @@ export type NotionBlock = {
   };
   // 块类型为 code 时，这是一段代码块
   code?: {
-    caption: [];
+    caption: rich_text;
     rich_text: rich_text; // 富文本
     language: string; // 代码的编程语言
   };
@@ -124,6 +124,18 @@ export type NotionBlock = {
   // 块类型为 divider 时，这是一个分割线
   divider?: {
     color: string; // 颜色
+  };
+  // 块类型为 image 时，这是一张图片
+  image?: {
+    caption: rich_text; // 图片的标题
+    type: string; // 图片的类型，可以是 external 或者 file
+    external?: {
+      url: string; // 图片的 URL
+    };
+    file?: {
+      url: string; // 图片的 URL
+      expiry_time: string; // 过期时间
+    };
   };
   [key: string]: any; // 其他属性
 };
