@@ -137,7 +137,9 @@ export default function CosmosBag({ block }: props) {
                 <div className="p-2">
                   {page.icon && <span>{page.icon?.emoji || page.icon?.external?.url}</span>}
                   <span>
-                    {page.properties.title?.title[0]?.plain_text || page.properties.名称?.title[0].plain_text}
+                    {page.properties.title?.title[0]?.plain_text
+                      ? page.properties.title?.title[0]?.plain_text
+                      : page.properties.名称?.title[0].plain_text}
                   </span>
                 </div>
               </a>
