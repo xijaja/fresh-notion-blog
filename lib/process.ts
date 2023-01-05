@@ -11,7 +11,9 @@ export type PageData = {
 
 // 处理页面数据
 export function processPages(pageData: NotionPage): PageData {
-  const title = pageData.properties.title?.title[0]?.plain_text;
+  const title =
+    pageData.properties.title?.title[0]?.plain_text ||
+    pageData.properties.名称?.title[0]?.plain_text;
   const icon =
     pageData.icon?.type === "emoji"
       ? pageData.icon.emoji
