@@ -25,16 +25,16 @@ export default function App({ Component }: AppProps) {
         <script>hljs.highlightAll();</script>
       </Head>
 
-      <Component />
-      <Footer />
+      {/* <Component />
+      <Footer /> */}
 
-      {/* <div
+      <div
         class="min-h-screen grid grid-cols-1"
-        style="grid-template-rows: auto 1fr auto;"
+        style="grid-template-rows: 0fr auto auto;"
       >
         <Component />
         <Footer />
-      </div> */}
+      </div>
     </>
   )
 }
