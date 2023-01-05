@@ -33,8 +33,8 @@ export const handler: Handlers<pageAndBlocks> = {
 }
 
 export default function HomePage({ data }: PageProps<pageAndBlocks>) {
-  const HomeImageUrl = Deno.env.get("HOME_COVER") || data.pageInfo.cover;
-  const HomeTitle = Deno.env.get("SITE_NAME") || "首页";
+  const HomeImageUrl = data.pageInfo.cover; // 首页封面图
+  const HomeTitle = Deno.env.get("SITE_NAME") || "首页"; // 首页标题
 
   return (
     <Layout title={HomeTitle} menusActive="/" imageUrl={HomeImageUrl}>

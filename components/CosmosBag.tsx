@@ -122,7 +122,7 @@ export default function CosmosBag({ block }: props) {
             && <p className="my-2 pl-2 border-l-4 border-gray-300 text-lg">{block.child_database!.title}</p>
           }
           {/* 数据库页面卡片 */}
-          <div className="grid gap-4 grid-cols-3">
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             {block.database_pages.map((page: NotionPage, _index: number) => (
               <a href={"/" + page.id} className="shadow rounded border border-gray-200">
                 {/* 数据库页面的卡片封面 */}
