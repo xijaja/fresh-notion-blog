@@ -201,7 +201,7 @@ export type title = {
       };
       plain_text: string; // 纯文本
       href?: string; // 链接的 URL
-    }
+    },
   ];
 };
 
@@ -246,5 +246,5 @@ export type rich_text = [
     };
     plain_text: string; // 纯文本
     href?: string; // 链接的 URL
-  }
+  },
 ];

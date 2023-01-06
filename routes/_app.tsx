@@ -17,16 +17,28 @@ export default function App({ Component }: AppProps) {
         <meta property="og:image" content={Deno.env.get("SITE_IMAGE")} />
 
         {/* 一些库 */}
-        <link href={"https://cdn.jsdelivr.net/npm/daisyui@2.46.0/dist/full.css"} rel="stylesheet" type="text/css" />
-        <script src={"https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"} />
-        <link href={"https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/default.min.css"}
-          rel="stylesheet" />
-        <script src={"https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"} />
+        <link
+          href={"https://cdn.jsdelivr.net/npm/daisyui@2.46.0/dist/full.css"}
+          rel="stylesheet"
+          type="text/css"
+        />
+        <script
+          src={"https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"}
+        />
+        <link
+          href={"https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/default.min.css"}
+          rel="stylesheet"
+        />
+        <script
+          src={"https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"}
+        />
         <script>hljs.highlightAll();</script>
       </Head>
 
-      {/* <Component />
-      <Footer /> */}
+      {
+        /* <Component />
+      <Footer /> */
+      }
 
       <div
         class="min-h-screen grid grid-cols-1"
@@ -36,5 +48,5 @@ export default function App({ Component }: AppProps) {
         <Footer />
       </div>
     </>
-  )
+  );
 }

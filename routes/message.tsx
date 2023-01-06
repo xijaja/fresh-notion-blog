@@ -6,5 +6,5 @@ export default function MessagePage() {
       <div>留言板</div>
       <p>尚未开发完成 敬请期待</p>
     </Layout>
-  )
+  );
 }

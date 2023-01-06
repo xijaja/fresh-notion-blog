@@ -1,32 +1,56 @@
 import { NotionBlock, NotionPage } from "../lib/notionTypes.ts";
-import IconFileText from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/file-text.tsx"
+import IconFileText from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/file-text.tsx";
 
 type props = {
   block: NotionBlock;
-}
+};
 
 export default function CosmosBag({ block }: props) {
-
   // 匹配块类型
   switch (block.type) {
-    case "heading_1":  // 标题 1
-      return (<h1 className="text-2xl my-6 font-black">{block!.heading_1!.rich_text[0].plain_text}</h1>);
+    case "heading_1": // 标题 1
+      return (
+        <h1 className="text-2xl my-6 font-black">
+          {block!.heading_1!.rich_text[0].plain_text}
+        </h1>
+      );
 
     case "heading_2": // 标题 2
-      return (<h2 className="text-xl my-4 font-bold">{block.heading_2!.rich_text[0].plain_text}</h2>);
+      return (
+        <h2 className="text-xl my-4 font-bold">
+          {block.heading_2!.rich_text[0].plain_text}
+        </h2>
+      );
 
     case "heading_3": // 标题 3
-      return (<h3 className="text-lg my-2">{block.heading_3!.rich_text[0].plain_text}</h3>);
+      return (
+        <h3 className="text-lg my-2">
+          {block.heading_3!.rich_text[0].plain_text}
+        </h3>
+      );
 
-    case "paragraph":  // 段落
+    case "paragraph": // 段落
       return (
         // 如果段落有内容，就循环读取段落内容并渲染，否则是一个空行
         <div className="my-2">
           {block.paragraph!.rich_text.length >= 1
             ? block.paragraph!.rich_text.map(
               (text, _index) => (
-                <span>{text.href ? <a href={text.href} className="underline" style={"text-underline-offset:4px"}>{text.plain_text}</a> : text.plain_text}</span>
-              ))
+                <span>
+                  {text.href
+                    ? (
+                      <a
+                        href={text.href}
+                        className="underline"
+                        style={"text-underline-offset:4px"}
+                      >
+                        {text.plain_text}
+                      </a>
+                    )
+                    : text.plain_text}
+                </span>
+              ),
+            )
             : <br />}
         </div>
       );
@@ -34,7 +58,8 @@ export default function CosmosBag({ block }: props) {
     case "bulleted_list_item": // 无序列表
       return (
         <div className="">
-          <span className="text-2xl">• </span>{block.bulleted_list_item!.rich_text.map((text, index) => (
+          <span className="text-2xl">•</span>
+          {block.bulleted_list_item!.rich_text.map((text, index) => (
             <span key={index}>{text.plain_text}</span>
           ))}
         </div>
@@ -55,8 +80,7 @@ export default function CosmosBag({ block }: props) {
           <span className="p-2">
             {block.callout!.icon?.type === "emoji"
               ? block.callout!.icon?.emoji
-              : block.callout!.icon?.external?.url
-            }
+              : block.callout!.icon?.external?.url}
           </span>
           {block.callout!.rich_text.map((text, index) => (
             <span key={index}>{text.plain_text}</span>
@@ -64,15 +88,19 @@ export default function CosmosBag({ block }: props) {
         </div>
       );
 
-    case "toggle":  // 折叠块
+    case "toggle": // 折叠块
       // console.log("block: ", block);
       return (
         <div className="my-2">
           <details>
-            <summary className="text-lg font-bold">{block.toggle?.rich_text[0].plain_text}</summary>
+            <summary className="text-lg font-bold">
+              {block.toggle?.rich_text[0].plain_text}
+            </summary>
             {block.has_children && (
               <div className="pl-4">
-                {block.children.map((bc: NotionBlock, _index: number) => <CosmosBag block={bc} />)}
+                {block.children.map((bc: NotionBlock, _index: number) => (
+                  <CosmosBag block={bc} />
+                ))}
               </div>
             )}
           </details>
@@ -103,7 +131,10 @@ export default function CosmosBag({ block }: props) {
       return (
         <div className="my-2">
           <a href={"/" + block.id}>
-            <span className="flex gap-1 items-center underline" style={"text-underline-offset:4px"}>
+            <span
+              className="flex gap-1 items-center underline"
+              style={"text-underline-offset:4px"}
+            >
               <IconFileText class="w-6 h-6" /> {block.child_page!.title}
             </span>
           </a>
@@ -118,26 +149,36 @@ export default function CosmosBag({ block }: props) {
       return (
         <div className="my-2">
           {/* 是否需要显示标题 */}
-          {Deno.env.get("SHOW_DATABASE_TITLE") === "true"
-            && <p className="my-2 pl-2 border-l-4 border-gray-300 text-lg">{block.child_database!.title}</p>
-          }
+          {Deno.env.get("SHOW_DATABASE_TITLE") === "true" &&
+            (
+              <p className="my-2 pl-2 border-l-4 border-gray-300 text-lg">
+                {block.child_database!.title}
+              </p>
+            )}
           {/* 数据库页面卡片 */}
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             {block.database_pages.map((page: NotionPage, _index: number) => (
-              <a href={"/" + page.id} className="shadow rounded border border-gray-200">
+              <a
+                href={"/" + page.id}
+                className="shadow rounded border border-gray-200"
+              >
                 {/* 数据库页面的卡片封面 */}
                 <div className="h-32">
                   {page.cover &&
-                    <img
-                      src={page.cover?.external?.url || page.cover?.file?.url}
-                      alt="cover"
-                      width="100%"
-                      className="h-32"
-                    />}
+                    (
+                      <img
+                        src={page.cover?.external?.url || page.cover?.file?.url}
+                        alt="cover"
+                        width="100%"
+                        className="h-32"
+                      />
+                    )}
                 </div>
                 {/* 数据库页面的图标和标题 */}
                 <div className="p-2">
-                  {page.icon && <span>{page.icon?.emoji || page.icon?.external?.url}</span>}
+                  {page.icon && (
+                    <span>{page.icon?.emoji || page.icon?.external?.url}</span>
+                  )}
                   <span>
                     {page.properties.title?.title[0]?.plain_text
                       ? page.properties.title?.title[0]?.plain_text
@@ -154,14 +195,18 @@ export default function CosmosBag({ block }: props) {
       // console.log("块: ", block);
       return (
         <div className="my-2 flex gap-6 justify-between">
-          {block.children.map((bc: NotionBlock, _index: number) => <CosmosBag block={bc} />)}
+          {block.children.map((bc: NotionBlock, _index: number) => (
+            <CosmosBag block={bc} />
+          ))}
         </div>
       );
 
     case "column": // 列
       return (
         <div className="my-2 flex flex-col w-1/2">
-          {block.children.map((bc: NotionBlock, _index: number) => <CosmosBag block={bc} />)}
+          {block.children.map((bc: NotionBlock, _index: number) => (
+            <CosmosBag block={bc} />
+          ))}
         </div>
       );
 
@@ -176,14 +221,23 @@ export default function CosmosBag({ block }: props) {
       return (
         <div className="my-2">
           {block.image!.type === "file"
-            ? <img src={block.image?.file?.url} alt={block.image!.caption[0].plain_text} />
-            : <img src={block.image?.external?.url} alt={block.image!.caption[0].plain_text} />
-          }
+            ? (
+              <img
+                src={block.image?.file?.url}
+                alt={block.image!.caption[0].plain_text}
+              />
+            )
+            : (
+              <img
+                src={block.image?.external?.url}
+                alt={block.image!.caption[0].plain_text}
+              />
+            )}
         </div>
       );
 
     default:
       console.log("尚不支持块：", block);
-      return <p className="text-red-500">块类型：{block.type} 尚不支持</p>
+      return <p className="text-red-500">块类型：{block.type} 尚不支持</p>;
   }
 }

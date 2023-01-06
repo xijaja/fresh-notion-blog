@@ -19,5 +19,5 @@ export default function NotFondPage() {
         </div>
       </section>
     </Layout>
-  )
+  );
 }

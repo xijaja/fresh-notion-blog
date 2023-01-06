@@ -45,7 +45,6 @@ export default function Header({ active, imageUrl }: Props) {
               <Changer />
             </li>
           </ul>
-
         </div>
       </div>
 
@@ -55,9 +54,10 @@ export default function Header({ active, imageUrl }: Props) {
           className="bg-cover h-48 bg-center mb-6"
           style={{
             backgroundImage: "url(" + imageUrl + ")",
-            backgroundSize: "cover"
+            backgroundSize: "cover",
           }}
-        ></div>
+        >
+        </div>
       )}
     </>
   );

@@ -14,10 +14,12 @@ export default class NotionData {
 
   // 初始化
   constructor() {
-    if (!auth)
+    if (!auth) {
       throw new Error("NOTION_TOKEN is not set, NOTION_TOKEN 是必须的");
-    if (!homePageId)
+    }
+    if (!homePageId) {
       throw new Error("HOME_PAGE_ID is not set, HOME_PAGE_ID 是必须的");
+    }
     this.client = new Client({ auth });
   }
 

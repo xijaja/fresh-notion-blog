@@ -2,7 +2,8 @@
 
 [![Made with Fresh](https://fresh.deno.dev/fresh-badge-dark.svg)](https://fresh.deno.dev)
 
-Notion Blog using the awesome framework [Fresh](https://fresh.deno.dev) from Deno.
+Notion Blog using the awesome framework [Fresh](https://fresh.deno.dev) from
+Deno.
 
 ### Usage
 

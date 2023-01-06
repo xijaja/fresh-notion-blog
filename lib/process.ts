@@ -1,4 +1,4 @@
-import { NotionPage, NotionBlock } from "./notionTypes.ts";
+import { NotionBlock, NotionPage } from "./notionTypes.ts";
 import NotionData from "./notionData.ts";
 
 // 要反回的数据
@@ -11,17 +11,14 @@ export type PageData = {
 
 // 处理页面数据
 export function processPages(pageData: NotionPage): PageData {
-  const title =
-    pageData.properties.title?.title[0]?.plain_text ||
+  const title = pageData.properties.title?.title[0]?.plain_text ||
     pageData.properties.名称?.title[0]?.plain_text;
-  const icon =
-    pageData.icon?.type === "emoji"
-      ? pageData.icon.emoji
-      : pageData.icon?.external?.url;
-  const cover =
-    pageData.cover?.type === "external"
-      ? pageData.cover.external?.url
-      : pageData.cover?.file?.url;
+  const icon = pageData.icon?.type === "emoji"
+    ? pageData.icon.emoji
+    : pageData.icon?.external?.url;
+  const cover = pageData.cover?.type === "external"
+    ? pageData.cover.external?.url
+    : pageData.cover?.file?.url;
 
   return {
     id: pageData.id,

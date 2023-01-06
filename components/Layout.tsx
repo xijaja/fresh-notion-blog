@@ -6,7 +6,7 @@ type Props = {
   title: string; // 页面标签
   menusActive?: string; // 激活的菜单
   imageUrl?: string; // 顶部图
-  children: ComponentChildren // 子组件
+  children: ComponentChildren; // 子组件
 };
 
 export default function Layout(props: Props) {
@@ -20,5 +20,5 @@ export default function Layout(props: Props) {
 
       <main className="px-4 mx-auto max-w-screen-lg">{props.children}</main>
     </>
-  )
+  );
 }
